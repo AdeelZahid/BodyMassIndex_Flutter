@@ -1,18 +1,17 @@
+import 'package:body_mass_index_calculator/constants/constants.dart';
 import 'package:body_mass_index_calculator/widgets/icon_content.dart';
 import 'package:body_mass_index_calculator/widgets/reusedable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants/constants.dart';
-
 enum Gender {
   male,
   female,
 }
+int height = 180;
 
 class InputPage extends StatefulWidget {
   InputPage({Key key}) : super(key: key);
-
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -50,6 +49,7 @@ class _InputPageState extends State<InputPage> {
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -90,9 +90,40 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           // Screen Center Flutter Slider
+          // Screen Center Flutter Slider
           Expanded(
             child: ReusableCard(
               colour: kActiveCardColour,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(height.toString(), style: kNumberTextStyle),
+                      Text('cm', style: kLabelTextStyle),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
+                    min: 120.0,
+                    max: 220.0,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.toInt();
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
