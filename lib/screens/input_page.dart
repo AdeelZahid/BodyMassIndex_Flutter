@@ -1,3 +1,4 @@
+import 'package:body_mass_index_calculator/calculation/result_calculator.dart';
 import 'package:body_mass_index_calculator/constants/constants.dart';
 import 'package:body_mass_index_calculator/screens/result_page.dart';
 import 'package:body_mass_index_calculator/widgets/bottom_button.dart';
@@ -222,10 +223,16 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             btnText: 'CALCULATE',
             onTap: () {
+              ResultCalculator calc = ResultCalculator(height, weight);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultPage(),
+                  builder: (context) => ResultPage(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
                 ),
               );
             },
