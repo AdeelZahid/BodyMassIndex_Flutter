@@ -1,4 +1,4 @@
-import 'package:body_mass_index_calculator/widgets/input_page.dart';
+import 'package:body_mass_index_calculator/screens/input_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

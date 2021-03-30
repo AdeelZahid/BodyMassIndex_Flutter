@@ -1,7 +1,9 @@
 import 'package:body_mass_index_calculator/constants/constants.dart';
+import 'package:body_mass_index_calculator/screens/result_page.dart';
+import 'package:body_mass_index_calculator/widgets/bottom_button.dart';
 import 'package:body_mass_index_calculator/widgets/icon_content.dart';
-import 'package:body_mass_index_calculator/widgets/result_page.dart';
 import 'package:body_mass_index_calculator/widgets/reusedable_card.dart';
+import 'package:body_mass_index_calculator/widgets/round_icon_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -217,46 +219,19 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           //BOTTOM
-          GestureDetector(
-            child: Container(
-              child: Text('CALCULATE'),
-              color: kBottomContainerColour,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
+          BottomButton(
+            btnText: 'CALCULATE',
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResultPage()),
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(),
+                ),
               );
             },
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function onPress;
-
-  const RoundIconButton({Key key, this.icon, this.onPress}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      elevation: 6.0,
-      // shape: CircleBorder(),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-      fillColor: Color(0xFF4C4F5E),
-      onPressed: onPress,
     );
   }
 }
